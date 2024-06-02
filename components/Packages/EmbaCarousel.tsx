@@ -173,7 +173,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               <div className="w-full font-bold text-xl text-slate-950 mb-2 italic text-center md:text-left">{t("ideal_package")}</div>
               <div className="w-full max-h-80 overflow-y-scroll custom-scrollbar">
                 {displayedPackage?.price.map((priceObj: PackagePrice, index: number) =>(
-                  <Disclosure>
+                  <Disclosure key={index}>
                     {({ open }) => (
                       <div className="mb-1 ">
                         <Disclosure.Button className="flex justify-between w-full p-2 text-lg font-semibold bg-gradient-to-br from-slate-700/10 to-zinc-800/10 rounded-md border border-1 border-slate-300/40 hover:border-slate-300/30 hover:bg-slate-800 hover:text-white/80 text-black transition transition-500">

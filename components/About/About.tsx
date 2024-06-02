@@ -39,8 +39,8 @@ export default function About() {
     return (
         <div className="flex w-full  flex-col font-sans">
             <div className="flex flex-col w-full pt-16 pb-16 justify-center gap-5 p-5 h-screen scroll-snap-y mandatory">
-                <h1 className="text-3xl md:text-6xl font-bold text-white/90">"{t("quote_text")}"</h1>
-                <h1 className="text-xl md:text-3xl font-light italic text-right verflow-y-auto text-slate-100/90">-{t("quote_author")}</h1>
+                <h1 className="text-3xl md:text-6xl font-bold text-white/90">&quot;{t("quote_text")}&quot;</h1>
+                <h1 className="text-xl md:text-3xl font-light italic text-right verflow-y-auto text-slate-100/90">{t("quote_author")}</h1>
             </div>
             <div className="justify-center scroll-snap-start">
                 <div className="flex flex-col md:flex-row bg-gradient-to-br from-slate-800/10 to-gray-700/10 rounded-xl items-center text-black justify-evenly m-5 backdrop-blur-md">

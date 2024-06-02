@@ -8,34 +8,25 @@ import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { height } from "@fortawesome/free-solid-svg-icons/faEllipsis";
 
 
-interface Image {
-    url: string;
-}
-
-interface Review {
-    description: string;
-    name: string;
-    star: number;
-}
 
 
 interface Post {
     category: string;
     createdAt: string;
-    images: Image[];
+    images: { url: string; }[];
     publishDate: string;
     publishedAt: string;
     shootDate: string;
     title: string;
     updatedAt: string;
     tag: string[];
-    review: Review[] | null;	
+    review: { description: string; name: string; stars: number; } | null;
     resizedImages: {
         small: { url: string; };
         medium: { url: string; };
         large: { url: string; };
         thumbnail: { url: string; };
-      }[];
+    }[];
 }
 
 

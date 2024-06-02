@@ -36,10 +36,26 @@ export default function Home() {
   const [currentComponent, setCurrentComponent] = useState<JSX.Element | null>(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const loader = new Loader({
-    apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
-    version: "weekly",
-  });
+  useEffect(() => {
+    const loader = new Loader({
+      apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+      version: "weekly",
+    });
+  
+    loader.loadCallback((error) => {
+      if (error) {
+        console.error(error);
+      } else {
+        const mapElement = document.getElementById("map");
+        if (mapElement) {
+          const map = new google.maps.Map(mapElement as HTMLElement, {
+            center: {lat: 47.6807308, lng: 16.6065311},
+            zoom: 8,
+          });
+        }
+      }
+    });
+  }, []); 
 
   useEffect(() => {
     const navItems = [
@@ -53,20 +69,6 @@ export default function Home() {
     setNavigation(navItems);
     setCurrentComponent(<Index currentComponent={currentComponent} setCurrentComponent={setCurrentComponent}/>);
   }, [i18n.language]);
-  
-  loader.loadCallback((error) => {
-  if (error) {
-    console.error(error);
-  } else {
-    const mapElement = document.getElementById("map");
-    if (mapElement) {
-      const map = new google.maps.Map(mapElement as HTMLElement, {
-        center: {lat: 47.6807308, lng: 16.6065311},
-        zoom: 8,
-      });
-    }
-  }
-});
   
   return (
     <div className={`flex w-screen h-screen justify-start items-center flex-col m-0 p-0  ${currentComponent?.type === Index ? 'bg-index' : 'bg-svg'}`}>
