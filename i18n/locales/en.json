@@ -1,0 +1,69 @@
+{
+    "home" : "Home",
+    "projects" : "Projects",
+    "gallery" : "Gallery",
+    "about" : "About",
+    "contact" : "Contact",
+
+    "slogen" : "Life's Moments, Perfectly Framed",
+    "highlighted_package": "Highlighted package",
+    "and_more": "And more...",
+    "load_pck_btn": "Check out packages",
+
+    "gallery_description": "Here you can find a selection of my best photos from all my galleries.",
+
+    "all_rights":"All rights reserved",
+    
+    "prev_button" : "Previous",
+    "next_button" : "Next",
+
+    "projects2" : "My latest projects",
+    "projects_description" : "Here you can find my latest projects. I am always looking for new challenges and opportunities to learn new things. If you have a project in mind, don't hesitate to contact me.",
+    "categories" : "Categories",
+    "loadingtext" : "Loading...",
+
+    "packages2" : "Photoshoot packages",
+    "packages_description" : "Here you can find the different photoshoot packages I offer. If you have any questions or want to book a photoshoot, don't hesitate to contact me.",
+    "close_pck_btn": "Close",
+
+    "contact_top" : "Get in contact with us!",
+    "contact_address" : "Address",
+    "contact_phone" : "Phone",
+
+    "quote_text" : "The camera is my working tool. Through it I give meaning to everything that surrounds me.",
+    "quote_author" : "André Kertész",
+    "profile_text": "I shoot around different subjects in different ways, but what I have in common is the natural human portrayal. It could be an event, a concert, a street, a life portrait or a portrait. I focus on the person through my photographs in a way that connects with their environment (understanding and knowing where they are, where they came from, where they are going, what thoughts and feelings are going through their mind) so that the recipient sees a person with a heart and soul. \nWhat fascinates me most is that I can observe the surroundings, discover every little detail, and like a little flame of excitement, I know that this is what I was looking for, this is what I want to photograph. \nFor me, photography is about having an inner voice, an intuition that this is how it's going to be, seeing the connection between the subject and the environment, the dynamics of the light, the colours, the contrast. In a way that often requires me to break the rules, towards asymmetry and imperfection, because that's what makes a photograph human.\n My goal with photography is to achieve that real true representation, captured moments, which is what aesthetic beauty, clarity, serenity is all about, and I do this by avoiding the contrived kitsch of the set. A real smile has a story, a personality, and you can't get that from anything else.",
+
+    "faq_title" : "Frequently asked questions",
+    "prices_title" : "Prices",
+    "prices_category" : "Shoot Style",
+    "prices_price" : "Shoot Price",
+
+    "load_more" : "Load more",
+    "tags": "Tags",
+
+    
+
+    "packages": "Packages",
+    "highlighted": "Highlighted",
+    "ideal_package": "Select your ideal package",
+
+    "contact_bot" : "Or write us a message!",
+    "contact_fil" : "And we will get back to you soon.",
+    
+    "learn_btn": "Learn more",
+    "from_txt_start": "From",
+    "from_txt_end": "HUF",
+
+    "name" : "Name",
+    "name_placeholder" : "Your name",
+    "email" : "Email",
+    "email_placeholder" : "Your email",
+    "message" : "Message",
+    "message_placeholder" : "Your message",
+    "send_button" : "Send message",
+    "contact.successTitle" : "Message succesfully sent",
+    "contact.successDescription" : "Thank you for your message. We will get back to you soon.",
+    "contact.errorTitle" : "Message can not be sent",
+    "contact.errorDescription" : "There was an error sending your message. Please try again later."
+}

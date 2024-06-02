@@ -1,0 +1,75 @@
+{
+    "home" : "Főoldal",
+    "projects" : "Projektek",
+    "gallery" : "Galéria",
+    "about" : "Rólam",
+    "contact" : "Kapcsolat",
+
+    "indexTitle" : "Háda Károly Photography", 
+    "slogenText": "Professzionalizmus mindenkinek – kompromisszumok nélkül!",
+    "highlighted_package" : "Aktuális Csomagajánlat",
+    "and_more": "És több...",
+    "load_pck_btn": "Összes csomag megtekintése",
+
+    "gallery_description": "Az összes fotóm egy helyen, melyeket különböző projekteken belül készítettem.",
+
+    "all_rights":"Minden jog fenntartva",
+
+    "prev_button" : "Előző",
+    "next_button" : "Következő",
+
+    "projects2" : "Projektek",
+    "projects_description" : "A legújabb munkáim rendszerezve",
+    "categories" : "Kategóriák",
+    "loadingtext" : "Betöltés...",
+
+    "packages2" : "Fotozás Csomagok",
+    "packages_description" : "Válasszon a studiónk által kínált csomagok küzöl, mely a legjobban megfelel az igényeinek.",
+    "close_pck_btn": "Bezárás",
+
+    "contact_top" : "Lépj kapcsolatba velem személyesen vagy telefonon...",
+    "contact_address" : "Cím",
+    "contact_phone" : "Telefonszám",
+
+    "load_more" : "Több betöltése",
+    "tags": "Címkék",
+
+    "packages": "Csomagok",
+    "highlighted": "Kiemelt",
+    "ideal_package": "Válasszd ki a számodra legmegfelelőbb csomagajánlatot",
+
+    "quote_text" : "Amikor arcot fotózol… a mögötte lévő lelket fényképezed.",
+    "quote_author" : "Jean-Luc Godard",
+    "profile_text": "Változatosan fotózok több téma körül, de ami közös, az a természetes emberi ábrázolás. Lehet ez egy rendezvény, koncert, utca, életkép vagy portré. Úgy fókuszálok az emberre a fotóimon keresztül, hogy kapcsolatba lépjen a környezetével (értsük és tudjuk, hogy ő hol van épp, honnan jött, hová megy, milyen gondolatok, érzések járnak épp a fejében), hogy a befogadó egy szívvel lélekkel teli személyt lásson.\nLegjobban az tud lenyűgözni, hogy megfigyelhetem a környezetet, minden egyes apró részletet felfedezem, és mint egy izgalommal teli kis láng villan fel bennem, amikor tudom, hogy ez az, amit kerestem, ezt szeretném lefotózni.\nSzámomra a fotózást arról szól, hogy van egy belső hangom, megérzésem, hogy így lesz jó, látom a kapcsolatot a fotó alanya és a környezet között, a fények dinamikáját, színeket, kontrasztot. Úgy, hogy ehhez sokszor a szabályokat kell felrúgnom, az aszimmetria és tökéletlenség irányába, mert ettől lesz egy fotó emberi.\n A célom a fotózással az, hogy megvalósítsam azt a valóságos igazi ábrázolást, elkapott pillanatokat, amelynek a mivolta az esztétikai szépség, letisztultság, nyugalom, és ezt úgy, hogy kerülöm a beállított mesterkélt giccset. Egy igazi mosolynak története van, személyisége, ezt nem lehet mással kiváltani.",
+
+    "faq_title" : "Gyakran Ismételt Kérdések",
+    "prices_title" : "Árak",
+    "prices_category" : "Fotozás Típusa", 
+    "prices_price" : "Fotozás Ára",
+
+    "contact_bot" : "Vagy írj nekem üzenet!",
+    "contact_fil" : "Hamarosan válaszolok!",
+
+    "learn_btn": "Részletek",
+    "from_txt_start": "Akár",
+    "from_txt_end": "FT-tól", 
+
+    "name" : "Név",
+    "name_placeholder" : "A neved",
+    "email" : "Email",
+    "email_placeholder" : "Az email címed",
+    "message" : "Üzenet",
+    "message_placeholder" : "Az üzeneted",
+    "send_button" : "Küldés",
+    "contact.successTitle" : "Üzenet sikeresen elküldve",
+    "contact.successDescription" : "Köszönöm az üzeneted! Hamarosan válaszolok.",
+    "contact.errorTitle" : "Hiba történt az üzenet küldése közben",
+    "contact.errorDescription" : "Kérlek próbáld újra később!",
+
+    "error_name_placeholder" : "Név megadása kötelező",
+    "error_email_placeholder" : "Email cím megadása kötelező",
+    "error_message_placeholder" : "Üzenet megadása kötelező"
+
+
+    
+}
