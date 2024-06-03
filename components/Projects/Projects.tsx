@@ -43,6 +43,7 @@ export default function Projects() {
     const [isHovering, setIsHovering] = useState(false);
 
     const { t } = useTranslation();
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
 
     const handleTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
@@ -57,7 +58,7 @@ export default function Projects() {
         if(cachedPosts){
             setPosts(JSON.parse(cachedPosts));
         } else {
-            fetch('http://localhost:1337/api/posts?populate=*')
+            fetch(`${serverUrl}/api/posts?populate=*`)
             .then(response => response.json())
             .then(data =>{
                 console.log("Data: ", data);

@@ -20,6 +20,7 @@ export default function ProjectView( {project}: ProjectViewProps) {
     const {selectedProject, setSelectedProject} = useContext(ProjectContext);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [isPortrait, setIsPortrait] = useState(false);
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
 
     const handleNextClick = () => {
         setSelectedImageIndex((selectedImageIndex + 1) % project.images.length);
@@ -44,7 +45,7 @@ export default function ProjectView( {project}: ProjectViewProps) {
         image.onload = function(){
             setIsPortrait(image.height > image.width);
         }
-        image.src = `http://localhost:1337${project.images[selectedImageIndex]}`;
+        image.src = `${serverUrl}${project.images[selectedImageIndex]}`;
     }, [project.images, selectedImageIndex]);
 
     useEffect(() => {
@@ -107,7 +108,7 @@ export default function ProjectView( {project}: ProjectViewProps) {
                     <img 
                     className={`max-h-16 md:max-h-20 h-auto  cursor-pointer hover:scale-110 transition-transform duration-500 rounded-sm shadow-lg select-none${isSelected ? " border-2 border-red-500" : " border-0"}`}
                     key={index} 
-                    src={`http://localhost:1337${image}`} 
+                    src={`${serverUrl}${image}`} 
                     alt="Project Pictures" 
                     onClick={() => handleImageClick((startIndex + index) % project.images.length)}
                     />
@@ -121,7 +122,7 @@ export default function ProjectView( {project}: ProjectViewProps) {
             </div>
             <div className="flex items-center justify-center gap-5">
                 <div className={`${isPortrait ? " w-full md:w-1/2 " : "w-full"}`}>
-                    <img className="w-full select-none" src={`http://localhost:1337${project.images[selectedImageIndex] }`} alt="Selected Project Picture"></img>
+                    <img className="w-full select-none" src={`${serverUrl}${project.images[selectedImageIndex] }`} alt="Selected Project Picture"></img>
                 </div>
             </div>
         </div>

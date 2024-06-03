@@ -11,18 +11,25 @@ export default function Gallery() {
     const [displayedImage, setDisplayedImage] = useState('');
 
     const { t } = useTranslation();
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
 
     const handleLoadMore = () => {
         setNumberOfPicturesToDisplay(numberOfPicturesToDisplay + 10);
     };
 
     useEffect(() => {
-        fetch('http://localhost:1337/api/posts?populate=*')
-        .then(response => response.json())
+        fetch(`${serverUrl}/api/posts?populate=*`)
+        .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
         .then(data => {
             const allImages = data.data.flatMap((item:any) => item.attributes.images.data.map((image:any) => image.attributes.url));
             setPictures(allImages);
         })
+        .catch(error => console.error('Error:', error));
     }, [])
 
     return (
@@ -37,13 +44,13 @@ export default function Gallery() {
                     <div key={index} className="flex justify-center items-center">
                         <img 
                             className="flex w-auto h-auto max-h-72 max-w-xl object-cover transform transition-all duration-500 grow wrap hover:scale-110 cursor-pointer opacity-0 imageLoad" 
-                            src={`http://localhost:1337${picture}`} 
+                            src={`${serverUrl}${picture}`} 
                             alt={`Gallery picture ${index + 1}`} 
                             onLoad={(e) => {
                                 e.currentTarget.style.opacity = "1";
                             }}
                             onClick={() => {
-                            setDisplayedImage(`http://localhost:1337${picture}`);
+                            setDisplayedImage(`${serverUrl}${picture}`);
                             setIsDialogOpen(true);
                             }}
                         />

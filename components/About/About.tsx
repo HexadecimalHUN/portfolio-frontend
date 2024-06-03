@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import FAQItem from "../Faq/Faq";
-import { InstagramEmbed, FacebookEmbed } from 'react-social-media-embed';
 import React from 'react';
 
 interface FAQ {
@@ -17,14 +16,20 @@ interface TableProps{
 }
 
 export default function About() {
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     const [faq, setFaq] = useState<FAQ[]>([]);
     const [tablePoprs, setTableProps] = useState<TableProps[]>([])
     const { t } = useTranslation();
 
 
     useEffect(() => {
-        fetch('http://localhost:1337/api/faqs')
-        .then(response => response.json())
+        fetch(`${serverUrl}/api/faqs`)
+        .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
         .then(data => {
             const faqs = data.data.map((item: any) => ({
                 question: item.attributes.question,
@@ -33,6 +38,7 @@ export default function About() {
             setFaq(faqs);
         
         })
+        .catch(error => console.error('Error:', error));
     },[])
 
 

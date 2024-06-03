@@ -63,8 +63,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     const [emblaRef, emblaApi] = useEmblaCarousel(options);
     const [emblaRef2, emblaApi2] = useEmblaCarousel(options);
     const {t} = useTranslation();
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     const [displayedPackage, setDisplayedPackage] = useState<Packages | null>(null);
 
 
@@ -97,7 +98,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                         
                         <div className="relative flex-col w-full h-full justify-around items-center rounded-xl w-96">
                             
-                            <img src={`http://localhost:1337${packageItem.images[1]}`} alt={`${packageItem.images[1]}`} className='flex rounded-tr-xl rounded-tl-xl h-72 object-cover w-full'></img>
+                            <img src={`${serverUrl}${packageItem.images[1]}`} alt={`${packageItem.images[1]}`} className='flex rounded-tr-xl rounded-tl-xl h-72 object-cover w-full'></img>
                             <div className={`w-full p-2 text-2xl font-bold ${packageItem.higlighted ? 'text-yellow-400':'text-slate-200'}`}>{packageItem.title}</div>
                             <div className="p-2 text-md text-slate-300">{packageItem.short_description}</div>
                             <div className="flex felx-col justify-start align-center p-2 text-xl italic font-semibold text-slate-100">
@@ -151,7 +152,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     {displayedPackage?.images.map((image: string, index: number) => (
                       <div className="embla__slide " key={index}>
                         <div className="embla__slide__number">
-                          <img src={`http://localhost:1337${image}`} alt={`${image}`} className='flex rounded-md max-h-72 md:max-h-96 object-contain shadow-lg'></img>
+                          <img src={`${serverUrl}${image}`} alt={`${image}`} className='flex rounded-md max-h-72 md:max-h-96 object-contain shadow-lg'></img>
 
                         </div>
                       </div>

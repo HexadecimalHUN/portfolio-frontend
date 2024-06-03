@@ -58,8 +58,8 @@ interface ProjectProps {
 export default function ProjectCard({ post }: ProjectProps) {
     const [isPortrait, setIsPortrait] = useState<boolean | null>(null);
     const {setSelectedProject} = useContext(ProjectContext);
-
     const { t } = useTranslation();
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
 
     const handleClick = () => {
         setSelectedProject(post);
@@ -70,15 +70,16 @@ export default function ProjectCard({ post }: ProjectProps) {
         img.onload = function(){
             setIsPortrait(img.height > img.width);
         }
-        img.src = `http://localhost:1337${post.images[0]}`;
+        img.src = `${serverUrl}${post.images[0]}`;
     }, [post.images]);
     if (isPortrait === null) {
         return <div>{t("loadingtext")}</div>
     }
+
     return (
     <div onClick={handleClick} className={`group flex ${isPortrait ? 'flex-col' : 'flex-row'} w-full h-full  gap-1 transition-colors duration-300 p-2 text-black items-center justify-center overflow-hidden cursor-pointer` }>
         <div className="w-full h-full rounded-t-lg flex items-center justify-center relative">
-            <img src={`http://localhost:1337${post.resizedImages[0].medium}`} alt="project" className=" h-full w-auto object-cover  shadow-lg transform transition-all duration-300 group-hover:translate-y-2 group-hover:scale-110 "/>
+            <img src={`${serverUrl}${post.resizedImages[0].medium}`} alt="project" className=" h-full w-auto object-cover  shadow-lg transform transition-all duration-300 group-hover:translate-y-2 group-hover:scale-110 "/>
         </div>
         <div className="flex flex-col w-full p-4">
             <h1 className="text-sm transform transition-all  text-slate-400 duration-300 group-hover:translate-y-4 group-hover:text-slate-200">{new Date(post.publishDate).toLocaleDateString()}</h1>

@@ -54,12 +54,14 @@ interface Review {
 }
 
 export default function Index({currentComponent, setCurrentComponent}: IndexProps) {
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     const { packages} = useContext(PackageContext);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [pckButtonHoovered, setPckButtonHoovered] = useState(false);
     const [slideshows, setSlideshows] = useState<SlideShow[]>([]);
     const [reviews, setReviews] = useState<Review[]>([]);
+    const [background, setBackground] = useState<String>("");
 
     const { t } = useTranslation();
 
@@ -99,7 +101,7 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
     };
 
     useEffect(() => {
-        fetch('http://localhost:1337/api/slideshows?populate=*')
+        fetch(`${serverUrl}/api/slideshows?populate=*`)
         .then(response => response.json())
         .then((data:any) => {
             const slideshows: SlideShow[] = data.data.map((item:any) => ({
@@ -114,9 +116,12 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
                 ]
             }));
             setSlideshows(slideshows);
-        });
+        })
+        .catch((error) => console.error(error));
+;
+        
 
-        fetch('http://localhost:1337/api/reviews?populate=*')
+        fetch(`${serverUrl}/api/reviews?populate=*`)
         .then(response => response.json())
         .then((data:any) => {
             const reviews: Review[] = data.data.map((item:any) => ({
@@ -126,11 +131,26 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
                 stars: item.attributes.stars
             }))
             setReviews(reviews);
-        });
+        })
+        .catch((error) => console.error(error));
+
+        
+
+        fetch(`${serverUrl}/api/backgrounds?populate=*`)
+        .then(response => response.json())
+        .then((data:any) => {
+            const background: String = data && data.data[0] && data.data[0].attributes && data.data[0].attributes.picture && data.data[0].attributes.picture.data && data.data[0].attributes.picture.data.attributes && data.data[0].attributes.picture.data.attributes.url
+                ? data.data[0].attributes.picture.data.attributes.url
+                : "/backup_bg.jpg";
+            setBackground(background);
+        })
+        .catch((error) => console.error(error));
+
+
     },[])
     return (
         <div className="flex mt-0 w-full h-auto bg-black flex-col items-center font-sans">
-            <div className="relative flex flex-col h-auto w-full items-center justify-center customIndex h-screen">
+            <div className="relative flex flex-col h-auto w-full items-center justify-center customIndex h-screen" style={{ backgroundImage: `url(${serverUrl}${background})`}}>
                 <div className="flex items-center text-center text-white flex-col gap-5   bg-black/10 p-2 pl-3 pr-3 backdrop-blur-sm ">
                     <div className="text-5xl md:text-8xl font-sans  rounded-md font-medium"><meta name="Site Name"/>{t("indexTitle")}</div>
                     <div className="text-2xl md:text-5xl font-light font-sans rounded-md pl-10 pr-10 md:pl-0 md:pr-0"><meta name="Site Slogen"/>{t("slogenText")}</div>
@@ -167,7 +187,7 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
                                             margin: 'auto',       
                                         }} 
                                         className={`absolute rounded-2xl border border-1 border-slate-600/40 drop-shadow-lg ${windowWidth <= 640 ? 'img-small' : windowWidth <= 768 ? 'img-medium' : 'img-large'}`}
-                                        src={`http://localhost:1337${highlightedPackages[0].images[index]}`}
+                                        src={`${serverUrl}${highlightedPackages[0].images[index]}`}
                                     />
                                 ))}
                                 </div>
@@ -214,7 +234,7 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
                         {reviews.slice(-4).map((review, index) => (
                             <div className="w-80 h-auto flex bg-black border border-1 border-slate-200/20 flex-col text-slate-100 p-5 rounded-lg" key={index}>
                                 <div className="flex flex-row w-full h-auto items-center justify-start gap-5 mb-6">
-                                    <img src={`http://localhost:1337${review.portrait}`} alt={`Review ${index + 1}`} className="w-24 h-24 rounded-full"/>
+                                    <img src={`${serverUrl}${review.portrait}`} alt={`Review ${index + 1}`} className="w-24 h-24 rounded-full"/>
                                     <div className="">
                                         <div className="text-2xl">{review.name}</div>
                                         <div className="">
@@ -238,7 +258,7 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
                       slideshow.images.map((image, imageIndex) => (
                         <img
                           key={imageIndex}
-                          src={`http://localhost:1337${window.innerWidth <= 640 ? image.large : image.full}`}
+                          src={`${serverUrl}${window.innerWidth <= 640 ? image.large : image.full}`}
                           alt={`Slideshow ${index + 1} Image ${imageIndex + 1}`}
                           className="w-screen h-auto"
                         />
