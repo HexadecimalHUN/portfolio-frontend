@@ -14,7 +14,6 @@ import Footer from "@/components/Footer/Footer";
 import Packages from "@/components/Packages/Packages";
 import ProjectProvider, { ProjectContext } from "@/components/Context/ProjectContext";
 import ProjectView from "@/components/ProjectView/ProjectView";
-import { LoadScript } from "@react-google-maps/api";
 import {useTranslation } from "react-i18next";
 import {ReCaptchaProvider} from "next-recaptcha-v3";
 
@@ -35,6 +34,7 @@ export default function Home() {
   const [navigation, setNavigation] = useState<NavigationItem[]>([]);
   const [currentComponent, setCurrentComponent] = useState<JSX.Element | null>(null);
   const [selectedProject, setSelectedProject] = useState(null);
+
 
   useEffect(() => {
     const loader = new Loader({

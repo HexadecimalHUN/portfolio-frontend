@@ -59,7 +59,7 @@ export default function ProjectCard({ post }: ProjectProps) {
     const [isPortrait, setIsPortrait] = useState<boolean | null>(null);
     const {setSelectedProject} = useContext(ProjectContext);
     const { t } = useTranslation();
-    const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
     const handleClick = () => {
         setSelectedProject(post);

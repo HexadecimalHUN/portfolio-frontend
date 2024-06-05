@@ -16,7 +16,7 @@ interface TableProps{
 }
 
 export default function About() {
-    const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
     const [faq, setFaq] = useState<FAQ[]>([]);
     const [tablePoprs, setTableProps] = useState<TableProps[]>([])
     const { t } = useTranslation();

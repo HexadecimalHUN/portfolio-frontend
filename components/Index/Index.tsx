@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useContext } from "react"
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -5,6 +6,7 @@ import { faAnglesDown, faAngleLeft, faAngleRight, faGift, faStar} from "@fortawe
 import { PackageContext } from "../Context/ProjectContext";
 import {motion, useAnimation} from 'framer-motion';
 import Packages from "../Packages/Packages";
+
 
 
 interface PackagePrice{
@@ -54,7 +56,7 @@ interface Review {
 }
 
 export default function Index({currentComponent, setCurrentComponent}: IndexProps) {
-    const serverUrl = process.env.REACT_APP_SERVER_URL;
+    
     const { packages} = useContext(PackageContext);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -64,7 +66,8 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
     const [background, setBackground] = useState<String>("");
 
     const { t } = useTranslation();
-
+   
+    const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
     const highlightedPackages: Packages[] = packages.filter((packageItem: Packages) => packageItem.higlighted);
 
     const nextImage = () => {
@@ -139,6 +142,7 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
         fetch(`${serverUrl}/api/backgrounds?populate=*`)
         .then(response => response.json())
         .then((data:any) => {
+            console.log("data: ",data);
             const background: String = data && data.data[0] && data.data[0].attributes && data.data[0].attributes.picture && data.data[0].attributes.picture.data && data.data[0].attributes.picture.data.attributes && data.data[0].attributes.picture.data.attributes.url
                 ? data.data[0].attributes.picture.data.attributes.url
                 : "/backup_bg.jpg";

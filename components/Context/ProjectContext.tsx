@@ -13,7 +13,7 @@ export const PackageContext = createContext({
 export default function ProjectProvider({ children }: any) {
     const [selectedProject, setSelectedProject] = useState(null);
     const [packages, setPackages] = useState([]);
-    const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
     useEffect(() => {
         fetch(`${serverUrl}/api/packages?populate=*`)

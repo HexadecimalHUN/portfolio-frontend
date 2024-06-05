@@ -43,7 +43,7 @@ export default function Projects() {
     const [isHovering, setIsHovering] = useState(false);
 
     const { t } = useTranslation();
-    const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
     const handleTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
@@ -61,7 +61,6 @@ export default function Projects() {
             fetch(`${serverUrl}/api/posts?populate=*`)
             .then(response => response.json())
             .then(data =>{
-                console.log("Data: ", data);
                 const postsData = data.data.map((item: any) => ({
                     ...item.attributes,
                     images: item.attributes.images.data.map((image:any) => image.attributes.url),
@@ -81,7 +80,6 @@ export default function Projects() {
                     
 
                 }));
-                console.log("TestData: ", postsData);
                 setPosts(postsData); 
             });
         };

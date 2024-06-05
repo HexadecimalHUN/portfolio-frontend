@@ -64,7 +64,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     const [emblaRef2, emblaApi2] = useEmblaCarousel(options);
     const {t} = useTranslation();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
     const [displayedPackage, setDisplayedPackage] = useState<Packages | null>(null);
 
 

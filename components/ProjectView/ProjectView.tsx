@@ -20,7 +20,7 @@ export default function ProjectView( {project}: ProjectViewProps) {
     const {selectedProject, setSelectedProject} = useContext(ProjectContext);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [isPortrait, setIsPortrait] = useState(false);
-    const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
     const handleNextClick = () => {
         setSelectedImageIndex((selectedImageIndex + 1) % project.images.length);
