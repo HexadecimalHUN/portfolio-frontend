@@ -98,7 +98,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                         
                         <div className="relative flex-col w-full h-full justify-around items-center rounded-xl w-96">
                             
-                            <img src={`${serverUrl}${packageItem.images[0]}`} alt={`${packageItem.images[0]}`} className='flex rounded-tr-xl rounded-tl-xl h-72 object-cover w-full'></img>
+                            <img src={`${serverUrl}${packageItem.images[0]}`} alt={`${packageItem.images[0]}`} className='flex rounded-tr-xl rounded-tl-xl h-72 object-cover w-full object-top'></img>
                             <div className={`w-full p-2 text-2xl font-bold ${packageItem.higlighted ? 'text-yellow-400':'text-slate-200'}`}>{packageItem.title}</div>
                             <div className="p-2 text-md text-slate-300">{packageItem.short_description}</div>
                             <div className="flex felx-col justify-start align-center p-2 text-xl italic font-semibold text-slate-100">
