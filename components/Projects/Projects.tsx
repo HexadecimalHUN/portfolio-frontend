@@ -61,8 +61,11 @@ export default function Projects() {
             fetch(`${serverUrl}/api/posts?populate=*`)
             .then(response => response.json())
             .then(data =>{
+                console.log(data);
                 const postsData = data.data.map((item: any) => ({
                     ...item.attributes,
+                    tag: item.attributes.post_tags.data.map((tag:any) => tag.attributes.Name),
+                    category: item.attributes.post_categories.data.map((category:any) => category.attributes.Name),
                     images: item.attributes.images.data.map((image:any) => image.attributes.url),
                     resizedImages: item.attributes.images.data.map((image:any) => ({
                         small: image.attributes.formats.small.url,
@@ -80,6 +83,7 @@ export default function Projects() {
                     
 
                 }));
+                console.log("Posts", postsData);
                 setPosts(postsData); 
             });
         };
@@ -103,14 +107,15 @@ export default function Projects() {
         let filtered = posts;
     
         if (selectedCategory !== 'All') {
-            filtered = filtered.filter(post => post.category === selectedCategory);
-        }
-    
-        if (selectedTags.length > 0 && !(selectedTags.length === 1 && selectedTags[0] === 'All')) {
+            filtered = filtered.filter(post => post.category.includes(selectedCategory));
+          }
+          
+          if (selectedTags.length > 0 && !(selectedTags.length === 1 && selectedTags[0] === 'All')) {
             filtered = filtered.filter(post => post.tag && post.tag.some(tag => selectedTags.includes(tag)));
-        }
-    
-        setFilteredPosts(filtered);
+          } else {
+            filtered = posts;
+          }
+
     }, [selectedCategory, selectedTags, posts]);
 
     return (
@@ -135,24 +140,24 @@ export default function Projects() {
                             </div>
                              }
                         </button>
-                            {isCategoriesOpen && (
-                                <div className="p-3">
-                                    {categories.map((category) => (
-                                        <div className="text-sm" key={category}>
-                                            <input 
-                                                type="radio"
-                                                name="category"
-                                                id={`category-${category}`}
-                                                value={category}
-                                                checked={selectedCategory === category}
-                                                onChange={(e) => setSelectedCategory(e.target.value)}
-                                                className="custome-checkbox mr-2"
-                                            ></input>
-                                            <label htmlFor={`category-${category}`} className="capitalize">{category} </label>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}                  
+                        {isCategoriesOpen && (
+                        <div className="p-3">
+                            {[...new Set(posts.flatMap((post) => post.category))].map((category) => (
+                            <div className="text-sm" key={category}>
+                                <input 
+                                type="radio"
+                                name="category"
+                                id={`category-${category}`}
+                                value={category}
+                                checked={selectedCategory === category}
+                                onChange={(e) => setSelectedCategory(e.target.value === selectedCategory ? 'All' : e.target.value)}
+                                className="custome-checkbox mr-2"
+                                ></input>
+                                <label htmlFor={`category-${category}`} className="capitalize">{category} </label>
+                            </div>
+                            ))}
+                        </div>
+                        )}              
                     </div>
                     <div className={`w-full h-fit backdrop-blur-md text-white bg-gray-800/20 rounded-md  transition duration-500 hover:bg-gradient-to-br from-slate-700 to-gray-900 ${isTagOpen ? 'bg-gradient-to-br from-slate-400/20 to-gray-600/40':''}`}>
                         <button className="w-full p-3" onClick={() => setIsTagOpen(!isTagOpen)}>

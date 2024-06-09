@@ -19,12 +19,12 @@
     "next_button" : "Következő",
 
     "projects2" : "Projektek",
-    "projects_description" : "A legújabb munkáim rendszerezve",
+    "projects_description" : "A legújabb munkáim ketegorikusan rendszerezve",
     "categories" : "Kategóriák",
     "loadingtext" : "Betöltés...",
 
     "packages2" : "Fotozás Csomagok",
-    "packages_description" : "Válasszon a studiónk által kínált csomagok küzöl, mely a legjobban megfelel az igényeinek.",
+    "packages_description" : "Válasszon a különböző fozózási csomagok küzöl, mely a legjobban megfelel az igényeinek.",
     "close_pck_btn": "Bezárás",
 
     "contact_top" : "Lépj kapcsolatba velem személyesen vagy telefonon...",
@@ -36,7 +36,8 @@
 
     "packages": "Csomagok",
     "highlighted": "Kiemelt",
-    "ideal_package": "Válasszd ki a számodra legmegfelelőbb csomagajánlatot",
+    "ideal_package": "Válasszd ki a számodra legmegfelelőbb csomagajánlatot", 
+    "package_contains": "A csomag tartalma",
 
     "quote_text" : "Amikor arcot fotózol… a mögötte lévő lelket fényképezed.",
     "quote_author" : "Jean-Luc Godard",
@@ -69,6 +70,8 @@
     "error_name_placeholder" : "Név megadása kötelező",
     "error_email_placeholder" : "Email cím megadása kötelező",
     "error_message_placeholder" : "Üzenet megadása kötelező"
+
+
 
 
     

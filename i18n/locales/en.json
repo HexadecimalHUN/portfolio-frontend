@@ -5,8 +5,9 @@
     "about" : "About",
     "contact" : "Contact",
 
-    "slogen" : "Life's Moments, Perfectly Framed",
-    "highlighted_package": "Highlighted package",
+    "indexTitle" : "Háda Károly Photography", 
+    "slogenText": "Professionalism for everybody, without compormise.",
+    "highlighted_package" : "Highlighted packages",
     "and_more": "And more...",
     "load_pck_btn": "Check out packages",
 
@@ -18,7 +19,7 @@
     "next_button" : "Next",
 
     "projects2" : "My latest projects",
-    "projects_description" : "Here you can find my latest projects. I am always looking for new challenges and opportunities to learn new things. If you have a project in mind, don't hesitate to contact me.",
+    "projects_description" : "My latest project, in cronological order.",
     "categories" : "Categories",
     "loadingtext" : "Loading...",
 
@@ -47,6 +48,7 @@
     "packages": "Packages",
     "highlighted": "Highlighted",
     "ideal_package": "Select your ideal package",
+    "package_contains": "The package contains:",
 
     "contact_bot" : "Or write us a message!",
     "contact_fil" : "And we will get back to you soon.",

@@ -38,9 +38,9 @@ interface Image {
 
 interface PackagePrice{
     title: string;
-    description: string;
+    description: string[];
     price: number;
-    items: string[];
+
 }
 
 interface Packages{
@@ -49,7 +49,7 @@ interface Packages{
     description: string;
     banner: Banner;
     images: string[];
-    price: PackagePrice[]
+    prices: PackagePrice[]
     short_description: string;
 }
 
@@ -82,6 +82,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       onPrevButtonClick: onPrevButtonClick2,
       onNextButtonClick: onNextButtonClick2
     } = UsePrevNextButtons(emblaApi2);
+
+    console.log("PackageItems: ", slides)
   
     return (
       <section className="embla w-full h-auto flex flex-col h-auto bg-none">
@@ -97,12 +99,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                         
                         <div className="relative flex-col w-full h-full justify-around items-center rounded-xl w-96">
                             
-                            <img src={`${serverUrl}${packageItem.images[1]}`} alt={`${packageItem.images[1]}`} className='flex rounded-tr-xl rounded-tl-xl h-72 object-cover w-full'></img>
+                            <img src={`${serverUrl}${packageItem.images[0]}`} alt={`${packageItem.images[0]}`} className='flex rounded-tr-xl rounded-tl-xl h-72 object-cover w-full'></img>
                             <div className={`w-full p-2 text-2xl font-bold ${packageItem.higlighted ? 'text-yellow-400':'text-slate-200'}`}>{packageItem.title}</div>
                             <div className="p-2 text-md text-slate-300">{packageItem.short_description}</div>
                             <div className="flex felx-col justify-start align-center p-2 text-xl italic font-semibold text-slate-100">
                                 <h1 className="pr-1">{t("from_txt_start")}</h1>
-                                {packageItem.price && packageItem.price.length > 0 && packageItem.price.reduce((min, p) => Number(p.price) < min ? Number(p.price) : min, Number(packageItem.price[0].price))}
+                                {packageItem.prices && packageItem.prices.length > 0 && packageItem.prices.reduce((min, p) => Number(p.price) < min ? Number(p.price) : min, Number(packageItem.prices[0].price))}
                                 <h1 className="pl-1">{t("from_txt_end")}</h1>
                             </div>
 
@@ -172,7 +174,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               <div className="w-full text-lg text-md pr-2 mb-2">{displayedPackage?.description}</div>
               <div className="w-full font-bold text-xl text-slate-950 mb-2 italic text-center md:text-left">{t("ideal_package")}</div>
               <div className="w-full max-h-80 overflow-y-scroll custom-scrollbar">
-                {displayedPackage?.price.map((priceObj: PackagePrice, index: number) =>(
+                {displayedPackage?.prices.map((priceObj: PackagePrice, index: number) =>(
                   <Disclosure key={index}>
                     {({ open }) => (
                       <div className="mb-1 ">
@@ -181,9 +183,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                           <span>{Number(priceObj.price).toLocaleString('hu-HU')} Ft</span>
                         </Disclosure.Button>
                         <Disclosure.Panel className="p-2 text-slate-900">
-                          <div className="text-lg font-semibold">{priceObj.description}</div>
+                          <div className="text-lg font-semibold">{t("package_contains")}</div>
                           <ul className="list-disc list-inside">
-                            {priceObj.items.map((item: string, index: number) => (
+                            {priceObj.description.map((item: string, index: number) => (
                               <li key={index} className="text-md font-semibold mr-2 ml-2">{item}</li>
                             ))}
                           </ul>

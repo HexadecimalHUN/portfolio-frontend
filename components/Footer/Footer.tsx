@@ -14,8 +14,8 @@ const Footer = () => {
       </a>
       </div>
       <div className="flex justify-center flex-col  items-center">
-        <h1>Karoly Hada Photography {new Date().getFullYear()} | All Rights Reservd</h1>
-        <h1 className="text-sm">Made By Hexa with ❤️</h1>
+        <h1>Karoly Hada Photography {new Date().getFullYear()} | All Rights Reserved</h1>
+        <h1 className="text-sm">Made by Hexa with ❤️</h1>
       </div>
     </div>
   );

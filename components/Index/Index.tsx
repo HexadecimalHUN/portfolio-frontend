@@ -11,9 +11,8 @@ import Packages from "../Packages/Packages";
 
 interface PackagePrice{
     title: string;
-    description: string;
+    description: string[];
     price: number;
-    items: string[];
 }
 
 interface Banner {
@@ -26,7 +25,7 @@ interface Packages{
     description: string;
     banner: Banner;
     images: string[];
-    price: PackagePrice[]
+    prices: PackagePrice[]
     short_description: string;
 }
 
@@ -80,9 +79,11 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
     const controls = useAnimation();
 
     let cheapestPackage;
-    if (highlightedPackages[0] && highlightedPackages[0].price) {
-    cheapestPackage = highlightedPackages[0].price.reduce((cheapest, current) => cheapest.price < current.price ? cheapest : current, highlightedPackages[0].price[0]);
+    console.log("highlightedPackages",highlightedPackages);
+    if (highlightedPackages[0] && highlightedPackages[0].prices) {
+        cheapestPackage = highlightedPackages[0].prices.reduce((cheapest, current) => cheapest.price < current.price ? cheapest : current, highlightedPackages[0].prices[0]);
     }
+    console.log("cheapestPackage",cheapestPackage);
     
 
     useEffect(() => {
@@ -210,8 +211,10 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
                             <div className="flex text-white gap-10 leading-7 flex-col">
                                 <div className="text-start font-light text-xl ">{`${highlightedPackages[0].description}`}</div>
                                 <ul className="list-disc list-inside text-start leading-8">
-                                {cheapestPackage && cheapestPackage.items.map((item: string, index: number) =>(
-                                    <li key={index} className="text-md font-light text-lg mr-2 ml-2 italic">{item}</li>
+                                {cheapestPackage && cheapestPackage.description.map((desc: string, index: number) => (
+                                    <li key={index} className="text-md font-light text-lg mr-2 ml-2 italic">
+                                        {desc}
+                                </li>
                                 ))}
                                     <li className="text-md font-light mr-2 ml-2 italic">{t("and_more")}</li>
                                 </ul>
