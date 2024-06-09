@@ -103,7 +103,7 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
     };
 
     useEffect(() => {
-        fetch(`${serverUrl}/api/slideshows?populate=*&limit=-1`)
+        fetch(`${serverUrl}/api/slideshows?populate=*`)
         .then(response => response.json())
         .then((data:any) => {
             const slideshows: SlideShow[] = data.data.map((item:any) => ({

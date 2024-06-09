@@ -16,7 +16,7 @@ export default function ProjectProvider({ children }: any) {
     const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
     useEffect(() => {
-        fetch(`${serverUrl}/api/packages?populate=*&limit=-1`)
+        fetch(`${serverUrl}/api/packages?populate=*`)
             .then(response => {
                 if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,7 +38,7 @@ export default function ProjectProvider({ children }: any) {
                     })),
                 }))
                 //Here we loop on the packae_prices to get the 
-                fetch(`${serverUrl}/api/package-prices?populate=*&limit=-1`)
+                fetch(`${serverUrl}/api/package-prices?populate=*`)
                 .then(response => {
                     if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
