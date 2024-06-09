@@ -61,7 +61,6 @@ export default function Projects() {
             fetch(`${serverUrl}/api/posts?populate=*`)
             .then(response => response.json())
             .then(data =>{
-                console.log(data);
                 const postsData = data.data.map((item: any) => ({
                     ...item.attributes,
                     tag: item.attributes.post_tags.data.map((tag:any) => tag.attributes.Name),
@@ -83,7 +82,6 @@ export default function Projects() {
                     
 
                 }));
-                console.log("Posts", postsData);
                 setPosts(postsData); 
             });
         };

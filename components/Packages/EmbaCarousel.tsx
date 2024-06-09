@@ -83,7 +83,6 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       onNextButtonClick: onNextButtonClick2
     } = UsePrevNextButtons(emblaApi2);
 
-    console.log("PackageItems: ", slides)
   
     return (
       <section className="embla w-full h-auto flex flex-col h-auto bg-none">

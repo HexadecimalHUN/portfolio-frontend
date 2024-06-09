@@ -37,7 +37,6 @@ export default function ProjectProvider({ children }: any) {
                         title: price.attributes.title,
                     })),
                 }))
-                console.log("Packages", packagesData);
                 //Here we loop on the packae_prices to get the 
                 fetch(`${serverUrl}/api/package-prices?populate=*`)
                 .then(response => {
@@ -47,14 +46,12 @@ export default function ProjectProvider({ children }: any) {
                     return response.json();
                 })
                 .then(data => {
-                    console.log("Package Prices", data);
                     const linkedPackagePrice = data.data.map((item: any) => ({
                         id: item.id,
                         linked_packages: item.attributes.packages.data.map((linked_package:any) => linked_package.id),
                         price: item.attributes.price,
                         descriptions: item.attributes.package_price_descriptions.data.map((description:any) => description.attributes.name),
                     }))
-                    console.log("Linked package: ",linkedPackagePrice);
 
                     const updatedPackagesData = packagesData.map((packageData:any) => {
                         // Map over the prices array in the package
@@ -85,15 +82,8 @@ export default function ProjectProvider({ children }: any) {
                             return packageData;
                       });
                       
-                      console.log(updatedPackagesData);
                       setPackages(updatedPackagesData);
-
-
-                })
-
-               
-
-                
+                })           
                 })
             .catch(error => console.error('Error:', error));;
       }, []);

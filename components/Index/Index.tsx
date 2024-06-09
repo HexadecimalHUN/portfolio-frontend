@@ -79,11 +79,9 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
     const controls = useAnimation();
 
     let cheapestPackage;
-    console.log("highlightedPackages",highlightedPackages);
     if (highlightedPackages[0] && highlightedPackages[0].prices) {
         cheapestPackage = highlightedPackages[0].prices.reduce((cheapest, current) => cheapest.price < current.price ? cheapest : current, highlightedPackages[0].prices[0]);
     }
-    console.log("cheapestPackage",cheapestPackage);
     
 
     useEffect(() => {
@@ -143,7 +141,6 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
         fetch(`${serverUrl}/api/backgrounds?populate=*`)
         .then(response => response.json())
         .then((data:any) => {
-            console.log("data: ",data);
             const background: String = data && data.data[0] && data.data[0].attributes && data.data[0].attributes.picture && data.data[0].attributes.picture.data && data.data[0].attributes.picture.data.attributes && data.data[0].attributes.picture.data.attributes.url
                 ? data.data[0].attributes.picture.data.attributes.url
                 : "/backup_bg.jpg";
