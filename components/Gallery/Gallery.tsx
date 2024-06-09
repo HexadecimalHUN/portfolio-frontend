@@ -18,7 +18,7 @@ export default function Gallery() {
     };
 
     useEffect(() => {
-        fetch(`${serverUrl}/api/posts?populate=*`)
+        fetch(`${serverUrl}/api/posts?populate=*&limit=-1`)
         .then(response => {
             if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);

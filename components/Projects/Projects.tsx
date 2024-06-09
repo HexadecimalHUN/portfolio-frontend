@@ -58,7 +58,7 @@ export default function Projects() {
         if(cachedPosts){
             setPosts(JSON.parse(cachedPosts));
         } else {
-            fetch(`${serverUrl}/api/posts?populate=*`)
+            fetch(`${serverUrl}/api/posts?populate=*&limit=-1`)
             .then(response => response.json())
             .then(data =>{
                 const postsData = data.data.map((item: any) => ({
