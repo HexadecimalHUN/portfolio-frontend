@@ -8,7 +8,7 @@
     "indexTitle" : "Háda Károly Photography", 
     "slogenText": "Professzionalizmus mindenkinek – kompromisszumok nélkül!",
     "highlighted_package" : "Aktuális Csomagajánlat",
-    "and_more": "És több...",
+    "and_more": "És sok más...",
     "load_pck_btn": "Összes csomag megtekintése",
 
     "gallery_description": "Az összes fotóm egy helyen, melyeket különböző projekteken belül készítettem.",
@@ -22,6 +22,8 @@
     "projects_description" : "A legújabb munkáim ketegorikusan rendszerezve",
     "categories" : "Kategóriák",
     "loadingtext" : "Betöltés...",
+    "all_title": "Összes",
+
 
     "packages2" : "Fotozás Csomagok",
     "packages_description" : "Válasszon a különböző fozózási csomagok küzöl, mely a legjobban megfelel az igényeinek.",

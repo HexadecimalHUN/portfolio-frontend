@@ -82,6 +82,7 @@ export default function Projects() {
                     
 
                 }));
+                console.log(postsData);
                 setPosts(postsData); 
             });
         };
@@ -92,6 +93,7 @@ export default function Projects() {
     useEffect(() =>{
         const uniqueCategories = [...new Set(posts.map(post => post.category))];
         setCategories(['All', ...uniqueCategories]);
+        console.log(categories)
         setFilteredPosts(posts);
     },[posts]);
 
@@ -103,16 +105,19 @@ export default function Projects() {
 
     useEffect(() => {
         let filtered = posts;
-    
+
         if (selectedCategory !== 'All') {
             filtered = filtered.filter(post => post.category.includes(selectedCategory));
-          }
-          
-          if (selectedTags.length > 0 && !(selectedTags.length === 1 && selectedTags[0] === 'All')) {
+        }
+        
+        if (selectedTags.length > 0 && !(selectedTags.length === 1 && selectedTags[0] === 'All')) {
             filtered = filtered.filter(post => post.tag && post.tag.some(tag => selectedTags.includes(tag)));
-          } else {
-            filtered = posts;
-          }
+        }
+        
+        setFilteredPosts(filtered);
+        console.log(filtered);
+
+        
 
     }, [selectedCategory, selectedTags, posts]);
 
@@ -140,21 +145,33 @@ export default function Projects() {
                         </button>
                         {isCategoriesOpen && (
                         <div className="p-3">
-                            {[...new Set(posts.flatMap((post) => post.category))].map((category) => (
-                            <div className="text-sm" key={category}>
-                                <input 
-                                type="radio"
-                                name="category"
-                                id={`category-${category}`}
-                                value={category}
-                                checked={selectedCategory === category}
-                                onChange={(e) => setSelectedCategory(e.target.value === selectedCategory ? 'All' : e.target.value)}
-                                className="custome-checkbox mr-2"
-                                ></input>
-                                <label htmlFor={`category-${category}`} className="capitalize">{category} </label>
-                            </div>
-                            ))}
+                        <div className="text-sm">
+                          <input 
+                            type="radio"
+                            name="category"
+                            id="category-All"
+                            value="All"
+                            checked={selectedCategory === 'All'}
+                            onChange={(e) => setSelectedCategory(e.target.value)}
+                            className="custome-checkbox mr-2"
+                          ></input>
+                          <label htmlFor="category-All" className="capitalize">{t("all_title")}</label>
                         </div>
+                        {[...new Set(posts.flatMap((post) => post.category))].map((category) => (
+                          <div className="text-sm" key={category}>
+                            <input 
+                              type="radio"
+                              name="category"
+                              id={`category-${category}`}
+                              value={category}
+                              checked={selectedCategory === category}
+                              onChange={(e) => setSelectedCategory(e.target.value)}
+                              className="custome-checkbox mr-2"
+                            ></input>
+                            <label htmlFor={`category-${category}`} className="capitalize">{category}</label>
+                          </div>
+                        ))}
+                      </div>
                         )}              
                     </div>
                     <div className={`w-full h-fit backdrop-blur-md text-white bg-gray-800/20 rounded-md  transition duration-500 hover:bg-gradient-to-br from-slate-700 to-gray-900 ${isTagOpen ? 'bg-gradient-to-br from-slate-400/20 to-gray-600/40':''}`}>
@@ -191,7 +208,7 @@ export default function Projects() {
                     </div>
                 </div>
                 <div className="max-w-full md:w-10/12 flex flex-row gap-0 flex-shrink-0 overflow-y-scroll flex-wrap justify-start scrollbar-hide flex-none" >
-                    {filteredPosts.slice(0, 5).map((post) => (
+                    {filteredPosts.map((post) => (
                         <div className={`flex align-start flex-col lg:w-1/4 sm:w-1/3 w-ful transition-opacity duration-500 ${isHovering && hoveredCard !== post.title ? 'other-card' : ''}` } 
                         style={{ opacity: 0 }}
                         key={post.title}

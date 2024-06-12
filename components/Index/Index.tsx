@@ -206,7 +206,7 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
                         
                         <div className="w-fill md:w-1/2 pl-10 p-10 jsutify-center items-center text-center border-t md:border-t-0  md:border-l border-slate-700 pl-10">
                             <div className="flex text-white gap-10 leading-7 flex-col">
-                                <div className="text-start font-light text-xl ">{`${highlightedPackages[0].description}`}</div>
+                                <div className="text-start font-light text-xl" dangerouslySetInnerHTML={{ __html: (highlightedPackages[0].description || '').replace(/<br\/>/g, '<br>') }}></div>
                                 <ul className="list-disc list-inside text-start leading-8">
                                 {cheapestPackage && cheapestPackage.description.map((desc: string, index: number) => (
                                     <li key={index} className="text-md font-light text-lg mr-2 ml-2 italic">

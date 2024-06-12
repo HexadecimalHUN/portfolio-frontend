@@ -75,12 +75,12 @@ export default function ProjectView( {project}: ProjectViewProps) {
       }, [selectedImageIndex]);
 
     return (
-        <div className="flex w-full bg-black flex-col items-center gap-4 p-2 min:h-screen h-auto select-none">
+        <div className="flex min:w-screen w-auto absolute  bg-black flex-col items-center gap-4 p-4 min:h-screen h-auto select-none top-4 left-0 right-0  z-55 overflow-x-visible">
             <div className="flex flex-row justify-between w-full p-2">
+                <div className="text-white text-4xl font-thin">{project.title}</div>
                 <div onClick={handleBackClick} className="text-black">
                     <FontAwesomeIcon icon={faTimesCircle} className="text-white text-5xl hover:text-slate-300 transition-transform duration-100 hover:scale-110" />
                 </div>
-                <div className="text-white text-4xl font-thin">{project.title}</div>
             </div>
             <div className="flex flex-row w-full h-auto justify-center items-center">
                 <div onClick={handlePreviousClick}>

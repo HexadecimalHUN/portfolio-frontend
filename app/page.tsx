@@ -74,14 +74,14 @@ export default function Home() {
     <div className={`flex w-screen h-screen justify-start items-center flex-col m-0 p-0  ${currentComponent?.type === Index ? 'bg-index' : 'bg-svg'}`}>
       <ReCaptchaProvider reCaptchaKey="">
         <I18nextProvider i18n={i18n}>
-        <Navbar currentComponent={currentComponent} setCurrentComponent={setCurrentComponent} Navigation={navigation} />
+        {!selectedProject && <Navbar currentComponent={currentComponent} setCurrentComponent={setCurrentComponent} Navigation={navigation} />}
           <Wrapper isIndex={currentComponent?.type === Index}>
             <ProjectProvider  >
               <ProjectContext.Provider value ={{selectedProject, setSelectedProject}}>
                 {selectedProject ? <ProjectView project = {selectedProject}/> : currentComponent}
               </ProjectContext.Provider>
             </ProjectProvider>
-            <Footer />
+            {!selectedProject &&<Footer />}
           </Wrapper>
         </I18nextProvider>
       </ReCaptchaProvider>

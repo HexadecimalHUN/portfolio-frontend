@@ -170,7 +170,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             </div>
             <div className="w-full md:w-1/2 flex flex-col mb-12 md:mb-0">
               <div className="w-full font-bold text-3xl text-slate-900 mb-2">{displayedPackage?.title}</div>
-              <div className="w-full text-lg text-md pr-2 mb-2">{displayedPackage?.description}</div>
+              <div className="w-full text-lg text-md pr-2 mb-2" dangerouslySetInnerHTML={{ __html: (displayedPackage?.description || '').replace(/<br\/>/g, '<br>') }}></div>
               <div className="w-full font-bold text-xl text-slate-950 mb-2 italic text-center md:text-left">{t("ideal_package")}</div>
               <div className="w-full max-h-80 overflow-y-scroll custom-scrollbar">
                 {displayedPackage?.prices.map((priceObj: PackagePrice, index: number) =>(

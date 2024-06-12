@@ -250,7 +250,7 @@ export default function Contact() {
                 <div className="flex-col min-w-1/2 max-w-full max-h-1/2 gap-4 flex">
                     <div className="text-4xl md:text-5xl text-slate-100 font-bold"><meta className='Contact Information Title'/>{t("contact_top")}</div>
                     <div className="text-2xl text-slate-100 font-sm"><meta className='Contact Information Address'/>{t("contact_address")}: Budapest - Kálmán Imre Utca 5.</div>
-                    <div className="text-2xl text-slate-100 font-sm"><meta className='Contact Information Phone Number'/>{t("contact_phone")}: </div>
+                    <div className="text-2xl text-slate-100 font-sm"><meta className='Contact Information Phone Number'/>{t("contact_phone")}: +36 30 283 5461</div>
                 </div>
                 <div className="min-w-1/2  w-full md:max-w-full max-h-1/2 justify-center items-center shadow-lg">
                     < GoogleMap
