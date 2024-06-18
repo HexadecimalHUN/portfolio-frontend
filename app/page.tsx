@@ -16,6 +16,7 @@ import ProjectProvider, { ProjectContext } from "@/components/Context/ProjectCon
 import ProjectView from "@/components/ProjectView/ProjectView";
 import {useTranslation } from "react-i18next";
 import {ReCaptchaProvider} from "next-recaptcha-v3";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 
@@ -74,6 +75,7 @@ export default function Home() {
     <div className={`flex w-screen h-screen justify-start items-center flex-col m-0 p-0  ${currentComponent?.type === Index ? 'bg-index' : 'bg-svg'}`}>
       <ReCaptchaProvider reCaptchaKey="">
         <I18nextProvider i18n={i18n}>
+        <SpeedInsights/>
         {!selectedProject && <Navbar currentComponent={currentComponent} setCurrentComponent={setCurrentComponent} Navigation={navigation} />}
           <Wrapper isIndex={currentComponent?.type === Index}>
             <ProjectProvider  >

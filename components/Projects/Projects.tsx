@@ -41,6 +41,7 @@ export default function Projects() {
     const [isTagOpen, setIsTagOpen] = useState(false);
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     const [isHovering, setIsHovering] = useState(false);
+    const [displayCount, setDisplayCount] = useState(5);
 
     const { t } = useTranslation();
     const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -65,7 +66,13 @@ export default function Projects() {
                     ...item.attributes,
                     tag: item.attributes.post_tags.data.map((tag:any) => tag.attributes.Name),
                     category: item.attributes.post_categories.data.map((category:any) => category.attributes.Name),
-                    images: item.attributes.images.data.map((image:any) => image.attributes.url),
+                    images: item.attributes.images.data
+                    .sort((a: any, b: any) => {
+                        const nameA = a.attributes.url.split('/').pop() || '';
+                        const nameB = b.attributes.url.split('/').pop() || '';
+                        return nameA.localeCompare(nameB);
+                    })
+                    .map((image: any) => image.attributes.url),
                     resizedImages: item.attributes.images.data.map((image:any) => ({
                         small: image.attributes.formats.small.url,
                         thumbnail: image.attributes.formats.thumbnail.url,
@@ -82,7 +89,6 @@ export default function Projects() {
                     
 
                 }));
-                console.log(postsData);
                 setPosts(postsData); 
             });
         };
@@ -208,7 +214,7 @@ export default function Projects() {
                     </div>
                 </div>
                 <div className="max-w-full md:w-10/12 flex flex-row gap-0 flex-shrink-0 overflow-y-scroll flex-wrap justify-start scrollbar-hide flex-none" >
-                    {filteredPosts.map((post) => (
+                    {filteredPosts.slice(0, displayCount).map((post) => (
                         <div className={`flex align-start flex-col lg:w-1/4 sm:w-1/3 w-ful transition-opacity duration-500 ${isHovering && hoveredCard !== post.title ? 'other-card' : ''}` } 
                         style={{ opacity: 0 }}
                         key={post.title}
@@ -227,6 +233,14 @@ export default function Projects() {
                             <ProjectCard post={post} />
                     </div>
                     ))}
+                    {displayCount < filteredPosts.length && (
+                        <button 
+                            onClick={() => setDisplayCount(displayCount + 5)} 
+                            className="flex align-start flex-col lg:w-1/4 sm:w-1/3 w-ful transition-opacity duration-500 p-10 justify-center items-center text-gray-200 hover:text-white hover:scale-110 transition-transform duration-600"
+                        >
+                            {t("load_more")}
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

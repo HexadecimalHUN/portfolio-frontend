@@ -103,6 +103,30 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
     };
 
     useEffect(() => {
+
+        fetch(`${serverUrl}/api/backgrounds?populate=*`)
+        .then(response => response.json())
+        .then((data:any) => {
+            const background: String = data && data.data[0] && data.data[0].attributes && data.data[0].attributes.picture && data.data[0].attributes.picture.data && data.data[0].attributes.picture.data.attributes && data.data[0].attributes.picture.data.attributes.url
+                ? data.data[0].attributes.picture.data.attributes.url
+                : "/backup_bg.jpg";
+            setBackground(background);
+        })
+        .catch((error) => console.error(error));
+
+        fetch(`${serverUrl}/api/reviews?populate=*`)
+        .then(response => response.json())
+        .then((data:any) => {
+            const reviews: Review[] = data.data.map((item:any) => ({
+                name: item.attributes.name,
+                description: item.attributes.description,
+                portrait: item.attributes.portrait.data.attributes.url,
+                stars: item.attributes.stars
+            }))
+            setReviews(reviews);
+        })
+        .catch((error) => console.error(error));
+
         fetch(`${serverUrl}/api/slideshows?populate=*`)
         .then(response => response.json())
         .then((data:any) => {
@@ -120,33 +144,13 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
             setSlideshows(slideshows);
         })
         .catch((error) => console.error(error));
-;
         
-
-        fetch(`${serverUrl}/api/reviews?populate=*`)
-        .then(response => response.json())
-        .then((data:any) => {
-            const reviews: Review[] = data.data.map((item:any) => ({
-                name: item.attributes.name,
-                description: item.attributes.description,
-                portrait: item.attributes.portrait.data.attributes.url,
-                stars: item.attributes.stars
-            }))
-            setReviews(reviews);
-        })
-        .catch((error) => console.error(error));
 
         
 
-        fetch(`${serverUrl}/api/backgrounds?populate=*`)
-        .then(response => response.json())
-        .then((data:any) => {
-            const background: String = data && data.data[0] && data.data[0].attributes && data.data[0].attributes.picture && data.data[0].attributes.picture.data && data.data[0].attributes.picture.data.attributes && data.data[0].attributes.picture.data.attributes.url
-                ? data.data[0].attributes.picture.data.attributes.url
-                : "/backup_bg.jpg";
-            setBackground(background);
-        })
-        .catch((error) => console.error(error));
+        
+
+        
 
 
     },[])

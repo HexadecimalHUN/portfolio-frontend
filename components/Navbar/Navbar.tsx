@@ -62,8 +62,8 @@ export default function Navbar({currentComponent, setCurrentComponent, Navigatio
                     </button>
                 </div>
                 {isMobile ?  (
-                    <div className="w-1/2 overflow-hidden">
-                        <button onClick={()=> setIsOpen(!isOpen)}>
+                    <div className="flex w-full overflow-hidden justif-center items-end flex-col pl-2 pr-2">
+                        <button onClick={()=> setIsOpen(!isOpen)} className="">
                             <FontAwesomeIcon icon={isOpen ? faTimes : faBars} className="text-white text-2xl" />
                         </button>
                         <Transition
