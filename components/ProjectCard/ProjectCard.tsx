@@ -26,7 +26,7 @@ import { useTranslation } from "react-i18next";
 
 interface ProjectProps {
     post: {
-        publishDate: string;
+        shootDate: string;
         title: string;
         images: { 
             url: string,
@@ -82,7 +82,7 @@ export default function ProjectCard({ post }: ProjectProps) {
             <img src={`${serverUrl}${post.resizedImages[0].small}`} alt="project" className=" h-full w-auto object-cover  shadow-lg transform transition-all duration-300 group-hover:translate-y-2 group-hover:scale-110 "/>
         </div>
         <div className="flex flex-col w-full p-4">
-            <h1 className="text-sm transform transition-all  text-slate-400 duration-300 group-hover:translate-y-4 group-hover:text-slate-200">{new Date(post.publishDate).toLocaleDateString()}</h1>
+            <h1 className="text-sm transform transition-all  text-slate-400 duration-300 group-hover:translate-y-4 group-hover:text-slate-200">{new Date(post.shootDate).toLocaleDateString()}</h1>
         </div>
     </div>
     );

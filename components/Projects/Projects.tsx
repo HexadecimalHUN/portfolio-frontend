@@ -106,8 +106,7 @@ export default function Projects() {
     useEffect(() =>{
         const uniqueCategories = [...new Set(posts.map(post => post.category))];
         setCategories(['All', ...uniqueCategories]);
-        console.log(categories)
-        setFilteredPosts(posts);
+        console.log("Posts - Categories:", posts);
     },[posts]);
 
     useEffect(() => {
@@ -126,9 +125,8 @@ export default function Projects() {
         if (selectedTags.length > 0 && !(selectedTags.length === 1 && selectedTags[0] === 'All')) {
             filtered = filtered.filter(post => post.tag && post.tag.some(tag => selectedTags.includes(tag)));
         }
-        
+        filtered.sort((a, b) => new Date(b.shootDate).getTime() - new Date(a.shootDate).getTime());
         setFilteredPosts(filtered);
-        console.log(filtered);
 
         
 
