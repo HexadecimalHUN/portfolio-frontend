@@ -130,7 +130,7 @@ export default function ProjectView( {project}: ProjectViewProps) {
             </div>
 
             <div className="flex items-center justify-center gap-5">
-                <div className={`${isPortrait ? "w-full md:w-1/3 " : "w-full"} relative`}>
+                <div className={`${isPortrait ? "w-full md:w-1/3 h-auto" : "h-auto md:max-w-screen-xl"} relative`}>
                     <img className="w-full select-none" src={`${serverUrl}${project.images[selectedImageIndex] }`} alt="Selected Project Picture"></img>
                         <div className="absolute md:hidden inset-y-0 left-0 flex justify-center items-center" style={{ width: '20%' }} onClick={handlePreviousClick}>
                             {renderDivs && (

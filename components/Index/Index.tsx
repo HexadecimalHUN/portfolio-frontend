@@ -70,18 +70,33 @@ export default function Index({currentComponent, setCurrentComponent}: IndexProp
     const highlightedPackages: Packages[] = packages.filter((packageItem: Packages) => packageItem.higlighted);
 
     const nextImage = () => {
-        setCurrentIndex((currentIndex + 1) % highlightedPackages[0].images.length);
-    };
+        if (highlightedPackages[0]) {
+          setCurrentIndex((currentIndex + 1) % highlightedPackages[0].images.length);
+        }
+      };
+      
+      const prevImage = () => {
+        if (highlightedPackages[0]) {
+          setCurrentIndex((currentIndex - 1 + highlightedPackages[0].images.length) % highlightedPackages[0].images.length);
+        }
+      };
 
-    const prevImage = () => {
-        setCurrentIndex((currentIndex - 1 + highlightedPackages[0].images.length) % highlightedPackages[0].images.length);
-    };
     const controls = useAnimation();
 
     let cheapestPackage;
     if (highlightedPackages[0] && highlightedPackages[0].prices) {
         cheapestPackage = highlightedPackages[0].prices.reduce((cheapest, current) => cheapest.price < current.price ? cheapest : current, highlightedPackages[0].prices[0]);
     }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          if (highlightedPackages[0]) {
+            setCurrentIndex((currentIndex - 1 + highlightedPackages[0].images.length) % highlightedPackages[0].images.length);
+          }
+        }, 4000);
+      
+        return () => clearInterval(interval);
+      }, [currentIndex, highlightedPackages]);
     
 
     useEffect(() => {

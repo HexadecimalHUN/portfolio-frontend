@@ -39,7 +39,7 @@ export default function Gallery() {
                 <div className="text-2xl font-light italic">{t("gallery_description")}</div>
             </div>
         
-            <div className="z-10 flex flex-row flex-wrap gap-4 w-full grow items-center justify-around md:justify-center mb-5">
+            <div className="z-10 flex flex-row flex-wrap gap-4 w-full grow items-center justify-around md:justify-start mb-5">
                 {pictures.slice(0, numberOfPicturesToDisplay).map((picture, index) => (
                     <div key={index} className="flex justify-center items-center">
                         <img 

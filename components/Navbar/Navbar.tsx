@@ -58,7 +58,7 @@ export default function Navbar({currentComponent, setCurrentComponent, Navigatio
                 <div className="w-1/2 md:1/3">
                     <button onClick={() => handleClick(<Index currentComponent={currentComponent} setCurrentComponent={setCurrentComponent}/>)}>
                     <h1 className="text-white text-xl mb-1/2 inline-block">Háda<span className="font-bold inline-block">Károly</span></h1>
-                    <h1 className="text-white text-m font-bold">Phtotography</h1>
+                    <h1 className="text-white text-m font-bold">Photography</h1>
                     </button>
                 </div>
                 {isMobile ?  (

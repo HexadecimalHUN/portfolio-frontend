@@ -62,17 +62,22 @@ export default function Projects() {
             fetch(`${serverUrl}/api/posts?populate=*`)
             .then(response => response.json())
             .then(data =>{
+                console.log("Data before sorting by shootDate:", data.data.map((item:any) => item.attributes.shootDate));
                 const postsData = data.data.map((item: any) => ({
                     ...item.attributes,
                     tag: item.attributes.post_tags.data.map((tag:any) => tag.attributes.Name),
                     category: item.attributes.post_categories.data.map((category:any) => category.attributes.Name),
-                    images: item.attributes.images.data
-                    .sort((a: any, b: any) => {
-                        const nameA = a.attributes.url.split('/').pop() || '';
-                        const nameB = b.attributes.url.split('/').pop() || '';
-                        return nameA.localeCompare(nameB);
-                    })
-                    .map((image: any) => image.attributes.url),
+                    images: (() => {
+                        const imageUrls = item.attributes.images.data.map((image: any) => image.attributes.url);
+                        //console.log("Image URLs before sort:", imageUrls); // Log before sort
+                        const sortedImageUrls = imageUrls.sort((a: string, b: string) => {
+                            const nameA = a.split('/').pop() || '';
+                            const nameB = b.split('/').pop() || '';
+                            return nameA.localeCompare(nameB);
+                        });
+                        //console.log("Image URLs after sort:", sortedImageUrls); // Log after sort
+                        return sortedImageUrls;
+                    })(),
                     resizedImages: item.attributes.images.data.map((image:any) => ({
                         small: image.attributes.formats.small.url,
                         thumbnail: image.attributes.formats.thumbnail.url,
@@ -88,7 +93,9 @@ export default function Projects() {
                     : null,
                     
 
-                }));
+                })).sort((a: any, b: any) => new Date(b.shootDate).getTime() - new Date(a.shootDate).getTime());
+                
+                console.log("Data after sorting by shootDate:", postsData.map((item:any) => item.shootDate)); // Log after sort by shootDate
                 setPosts(postsData); 
             });
         };
@@ -212,8 +219,9 @@ export default function Projects() {
                             </div>
                         )}   
                     </div>
+                    
                 </div>
-                <div className="max-w-full md:w-10/12 flex flex-row gap-0 flex-shrink-0 overflow-y-scroll flex-wrap justify-start scrollbar-hide flex-none" >
+                <div className="max-w-full md:w-10/12 flex flex-row gap-0 flex-shrink-0 overflow-y-scroll flex-wrap justify-center md:justify-start scrollbar-hide flex-none" >
                     {filteredPosts.slice(0, displayCount).map((post) => (
                         <div className={`flex align-start flex-col lg:w-1/4 sm:w-1/3 w-ful transition-opacity duration-500 ${isHovering && hoveredCard !== post.title ? 'other-card' : ''}` } 
                         style={{ opacity: 0 }}

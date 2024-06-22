@@ -4,8 +4,8 @@ import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg
 
 const Footer = () => {
   return (
-    <div className="border-t border-slate-400 flex flex-col items-center justify-center text-slate-400 pt-4 pb-4 bottom-0">
-      <div className="flex flex-row justify-center gap-2">
+    <div className="border-t border-slate-400 flex flex-col items-center justify-center text-slate-400 pt-4 pb-4 bottom-0 text-center">
+      <div className="flex flex-row justify-center gap-2 istems-center text-center">
       <a href="https://www.facebook.com/HadaPhotography" target="_blank" rel="noopener noreferrer">
         <FontAwesomeIcon icon={faFacebook} className="text-4xl m-2 hover:text-blue-700 transform duration-200"/>
       </a>
